@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AWS Console Color Changer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input[type="text"],
+      input[type="color"] {
+        margin-top: 5px;
+        width: 100%;
+        padding: 5px;
+      }
+      button {
+        margin-top: 10px;
+        padding: 10px;
+        width: 100%;
+        background-color: #0073bb;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #005fa3;
+      }
+      .record {
+        margin-top: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .delete {
+        margin-left: 10px;
+        color: red;
+        cursor: pointer;
+      }
+      .error {
+        color: red;
+        margin-top: 5px;
+      }
+      #color-preview {
+        display: block;
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Account Color Settings</h1>
+    <label for="account">AWS Account</label>
+    <input type="text" id="account" placeholder="Enter AWS Account" />
+
+    <label for="color">Background Color (e.g., #FFFFFF)</label>
+    <input type="text" id="color" placeholder="#FFFFFF" />
+    <div id="color-preview"></div>
+    <div id="color-error" class="error"></div>
+
+    <button id="add">Add Setting</button>
+
+    <div id="records"></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
