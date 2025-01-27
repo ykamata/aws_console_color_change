@@ -1,6 +1,6 @@
 chrome.storage.sync.get("settings", ({ settings }) => {
   if (!settings) return;
-  const accountElement = document.querySelector('[data-testid="aws-account"]');
+  const accountElement = document.querySelector("span.globalNav-2252");
   if (accountElement) {
     const accountText = accountElement.textContent.trim();
     let accountId;
@@ -20,8 +20,8 @@ chrome.storage.sync.get("settings", ({ settings }) => {
     if (accountId) {
       const color = settings[accountId];
       if (color) {
-        const header = document.querySelector("header");
-        const footer = document.querySelector("footer");
+        const header = document.querySelector("nav.globalNav-223");
+        const footer = document.querySelector("#console-nav-footer-inner");
         if (header) header.style.backgroundColor = color;
         if (footer) footer.style.backgroundColor = color;
       }
