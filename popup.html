@@ -6,67 +6,170 @@
       body {
         font-family: Arial, sans-serif;
         margin: 20px;
+        width: 570px;
+      }
+      .form-group {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
       label {
-        display: block;
-        margin-top: 10px;
+        width: 110px;
       }
-      input[type="text"],
-      input[type="color"] {
-        margin-top: 5px;
-        width: 100%;
+      input[type="text"] {
         padding: 5px;
       }
-      button {
+      #account {
+        width: 160px;
+      }
+      #color {
+        width: 80px;
+      }
+      #color-preview {
+        width: 40px;
+        height: 30px;
+        border: 1px solid #ccc;
+      }
+      .button-container {
+        display: flex;
+        justify-content: flex-end;
         margin-top: 10px;
+      }
+      button {
         padding: 10px;
-        width: 100%;
+        width: 100px;
         background-color: #0073bb;
         color: white;
         border: none;
         cursor: pointer;
       }
-      button:hover {
-        background-color: #005fa3;
-      }
-      .record {
-        margin-top: 15px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-      .delete {
-        margin-left: 10px;
-        color: red;
-        cursor: pointer;
+      .update {
+        background-color: #ffc107; /* Yellow color for better visibility */
       }
       .error {
         color: red;
         margin-top: 5px;
       }
-      #color-preview {
-        display: block;
-        margin-top: 10px;
-        width: 100%;
+      .record-container {
+        margin-top: 20px;
+      }
+      .record-header,
+      .record-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+      }
+      .record-header {
+        font-weight: bold;
+        border-bottom: 2px solid #ccc;
+      }
+      .record-row {
+        border-bottom: 1px solid #ddd;
+      }
+      .record-item {
+        width: 30%;
+        text-align: center;
+      }
+      .record-actions {
+        display: flex;
+        gap: 5px;
+      }
+      .color-input {
+        width: 80px;
+        vertical-align: middle;
+      }
+      .color-preview {
+        width: 40px;
         height: 30px;
-        border: 1px solid #ccc;
+        margin-left: 5px;
+        display: inline-block;
+        vertical-align: middle;
       }
     </style>
   </head>
   <body>
     <h1>Account Color Settings</h1>
-    <label for="account">AWS Account</label>
-    <input type="text" id="account" placeholder="Enter AWS Account" />
-
-    <label for="color">Background Color (e.g., #FFFFFF)</label>
-    <input type="text" id="color" placeholder="#FFFFFF" />
-    <div id="color-preview"></div>
+    <div class="form-group">
+      <div class="input-group">
+        <label for="account">AWS Account</label>
+        <input type="text" id="account" placeholder="XXXX-XXXX-XXXX" />
+        <label for="color">Background Color</label>
+        <input type="text" id="color" placeholder="#FFFFFF" />
+        <div id="color-preview"></div>
+      </div>
+    </div>
     <div id="color-error" class="error"></div>
 
-    <button id="add">Add Setting</button>
+    <div class="button-container">
+      <button id="add">Add Setting</button>
+    </div>
 
-    <div id="records"></div>
+    <div class="record-container">
+      <div class="record-header">
+        <span class="record-item">AWS Account</span>
+        <span class="record-item">Background Color</span>
+        <span class="record-item">Action</span>
+      </div>
+      <div id="records">
+        <div class="record-row">
+          <span class="record-item">1234-5678-9012</span>
+          <span
+            class="record-item color-display"
+            style="background-color: #ff5733; padding: 5px"
+            >#FF5733</span
+          >
+          <div class="record-item record-actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script src="popup.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .getElementById("records")
+          .addEventListener("click", function (event) {
+            const target = event.target;
+            const row = target.closest(".record-row");
+            if (target.classList.contains("edit")) {
+              const colorSpan = row.querySelector(".color-display");
+              colorSpan.style.backgroundColor = "#ffffff";
+              const colorValue = colorSpan.textContent.trim();
+              colorSpan.innerHTML = `<input type='text' value='${colorValue}' class='color-input'> <div class='color-preview' style='background-color:${colorValue};'></div>`;
+              const colorInput = colorSpan.querySelector(".color-input");
+              const colorPreview = colorSpan.querySelector(".color-preview");
+
+              colorInput.addEventListener("input", () => {
+                colorPreview.style.backgroundColor = colorInput.value.trim();
+              });
+
+              row.querySelector(".delete").style.display = "none";
+              target.textContent = "Update";
+              target.classList.remove("edit");
+              target.classList.add("update");
+            } else if (target.classList.contains("update")) {
+              const colorInput = row.querySelector(".color-input");
+              const newColor = colorInput.value.trim();
+              row.querySelector(".color-display").innerHTML = newColor;
+              row.querySelector(".color-display").style.backgroundColor =
+                newColor;
+              row.querySelector(".delete").style.display = "inline-block";
+              target.textContent = "Edit";
+              target.classList.remove("update");
+              target.classList.add("edit");
+            } else if (target.classList.contains("delete")) {
+              row.remove();
+            }
+          });
+      });
+    </script>
   </body>
 </html>
