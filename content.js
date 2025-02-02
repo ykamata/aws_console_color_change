@@ -1,7 +1,7 @@
-chrome.storage.sync.get("settings", ({ settings }) => {
-  if (!settings) return;
-
-  const applyColor = () => {
+const applyColor = () => {
+  chrome.storage.sync.get("settings", ({ settings }) => {
+    if (!settings) return;
+    console.log("exec applyColor");
     const accountElement = document.querySelector(
       "[data-testid='awsc-account-info-tile']"
     );
@@ -31,15 +31,24 @@ chrome.storage.sync.get("settings", ({ settings }) => {
         }
       }
     }
-  };
-
-  // Use MutationObserver to detect when the element appears
-  const observer = new MutationObserver(() => {
-    if (document.querySelector("[data-testid='awsc-account-info-tile']")) {
-      applyColor();
-      observer.disconnect(); // Stop observing once the element is found
-    }
   });
+};
 
-  observer.observe(document.body, { childList: true, subtree: true });
+// Use MutationObserver to detect when the element appears
+const observer = new MutationObserver(() => {
+  if (document.querySelector("[data-testid='awsc-account-info-tile']")) {
+    applyColor();
+    observer.disconnect(); // Stop observing once the element is found
+  }
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
+// **メッセージ受信でapplyColorを実行**
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "AC3__ping") {
+    sendResponse({ message: "AC3__pong" });
+  } else if (message.action === "AC3__updateColor") {
+    applyColor();
+  }
 });

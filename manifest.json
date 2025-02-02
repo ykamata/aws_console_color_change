@@ -3,7 +3,7 @@
   "name": "AWS Console Color Changer",
   "version": "1.0",
   "description": "Change AWS console header and footer colors based on account settings.",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -14,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.aws.amazon.com/*"],
+      "matches": ["https://*.console.aws.amazon.com/*"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
