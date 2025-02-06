@@ -4,6 +4,7 @@
   "version": "1.0",
   "description": "Change AWS console header and footer colors based on account settings.",
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "host_permissions": ["https://*.console.aws.amazon.com/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

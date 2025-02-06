@@ -52,11 +52,13 @@
         background-color: #ffc107; /* Yellow color for better visibility */
       }
       .cancel-link {
-        margin-left: 10px;
+        margin-left: 20px;
         color: #0073bb;
         cursor: pointer;
         text-decoration: underline;
-        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        width: 100px;
       }
       .error {
         color: red;
@@ -126,6 +128,9 @@
       <div id="records"></div>
     </div>
 
+    <script src="constants.js"></script>
+    <script src="settingsService.js"></script>
+    <script src="uiManager.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
