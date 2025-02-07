@@ -30,20 +30,23 @@ This Chrome extension customizes the header and footer background colors of the 
 ## Directory Structure
 
 ```bash
-aws-console-color-changer/
+aws_console_color_change/
 ├── manifest.json              # Chrome extension configuration file
-├── background.js              # Background script to manage tab activation
-├── content.js                 # Script to dynamically change colors in AWS console
-├── popup.html                 # HTML for popup interface
-├── popup.js                   # JavaScript for popup functionality
-├── icons/                     # Folder containing extension icons
+├── background.js             # Background script to manage tab activation
+├── content.js               # Script to dynamically change colors in AWS console
+├── popup.html              # HTML for popup interface
+├── popup.js              # Configure events for popup interface
+├── constants.js           # Constants and configuration values
+├── uiManager.js          # UI management functionality
+├── settingsService.js          # Storage management functionality
+├── icons/
 │   ├── icon-16.png
 │   ├── icon-48.png
 │   └── icon-128.png
-├── styles/                    # Folder for additional styles (optional)
-│   └── popup.css              # Popup-specific CSS (if needed)
-├── README.md                  # Project documentation
-└── .gitignore                 # Files and directories to ignore in Git
+├── README.md
+├── LICENSE
+└── .gitignore
+
 ```
 
 ## Notes
