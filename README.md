@@ -44,9 +44,7 @@ aws_console_color_change/
 │   ├── icon-48.png
 │   └── icon-128.png
 ├── README.md
-├── LICENSE
-└── .gitignore
-
+└── LICENSE
 ```
 
 ## Notes

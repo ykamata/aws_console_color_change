@@ -1,4 +1,6 @@
-class UIManager {
+import { REGEX } from "./constants.js";
+
+export default class UIManager {
   constructor() {
     this.elements = {
       accountInput: document.getElementById("account"),
@@ -16,11 +18,11 @@ class UIManager {
   }
 
   static accountForDisplay(accountId) {
-    return accountId.replace(CONSTANTS.ACCOUNT_FORMAT_REGEX, "$1-$2-$3");
+    return accountId.replace(REGEX.ACCOUNT_FORMAT, "$1-$2-$3");
   }
 
   static isValidHexColor(color) {
-    return CONSTANTS.VALID_COLOR_REGEX.test(color);
+    return REGEX.VALID_COLOR.test(color);
   }
 
   updateUI = (settings) => {

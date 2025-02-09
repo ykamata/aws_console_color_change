@@ -1,14 +1,4 @@
-const CONSTANTS = {
-  MESSAGES: {
-    PING: "AC3__ping",
-    PONG: "AC3__pong",
-    UPDATE_COLOR: "AC3__updateColor",
-    POPUP_PORT: "AC3__popup",
-  },
-  URLS: {
-    AWS_CONSOLE: "console.aws.amazon.com",
-  },
-};
+import { MESSAGES, URLS } from "./constants.js";
 
 // Tab manager class to handle tab-related operations
 class TabManager {
@@ -37,9 +27,9 @@ class MessageHandler {
   static async pingTab(tab) {
     try {
       const response = await TabManager.sendMessageToTab(tab.id, {
-        action: CONSTANTS.MESSAGES.PING,
+        action: MESSAGES.PING,
       });
-      return response?.message === CONSTANTS.MESSAGES.PONG;
+      return response?.message === MESSAGES.PONG;
     } catch (error) {
       console.log("Tab does not have the script yet.");
       return false;
@@ -49,7 +39,7 @@ class MessageHandler {
   static async updateTabColor(tab) {
     try {
       await TabManager.sendMessageToTab(tab.id, {
-        action: CONSTANTS.MESSAGES.UPDATE_COLOR,
+        action: MESSAGES.UPDATE_COLOR,
       });
     } catch (error) {
       console.log("Error: sendMessage", error);
@@ -81,14 +71,14 @@ class MessageHandler {
 // Event listeners
 chrome.tabs.onActivated.addListener((activeInfo) => {
   chrome.tabs.get(activeInfo.tabId, async (tab) => {
-    if (tab.url?.includes(CONSTANTS.URLS.AWS_CONSOLE)) {
+    if (tab.url?.includes(URLS.AWS_CONSOLE)) {
       await MessageHandler.handleTabUpdate(tab);
     }
   });
 });
 
 chrome.runtime.onConnect.addListener((port) => {
-  if (port.name === CONSTANTS.MESSAGES.POPUP_PORT) {
+  if (port.name === MESSAGES.POPUP_PORT) {
     port.onDisconnect.addListener(async () => {
       console.log("Popup window closed");
       try {
