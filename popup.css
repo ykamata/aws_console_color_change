@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  width: 570px;
+}
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+label {
+  width: 110px;
+}
+input[type="text"] {
+  padding: 5px;
+}
+#account {
+  width: 160px;
+}
+#color {
+  width: 80px;
+}
+#color-preview {
+  width: 40px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+button {
+  padding: 10px;
+  width: 100px;
+  background-color: #0073bb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.update {
+  background-color: #ffc107; /* Yellow color for better visibility */
+}
+.cancel-link {
+  margin-left: 20px;
+  color: #0073bb;
+  cursor: pointer;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  width: 100px;
+}
+.error {
+  color: red;
+  margin-top: 5px;
+}
+.record-container {
+  margin-top: 20px;
+}
+.record-header,
+.record-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+.record-header {
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+.record-row {
+  border-bottom: 1px solid #ddd;
+}
+.record-item {
+  width: 30%;
+  text-align: center;
+}
+.font-shadow {
+  text-shadow: 1px 1px 1px white, -1px -1px 1px white, 1px -1px 1px white,
+    -1px 1px 1px white;
+}
+.record-actions {
+  display: flex;
+  gap: 5px;
+}
+.x-color-input {
+  width: 80px;
+  vertical-align: middle;
+}
+.x-color-preview {
+  width: 40px;
+  height: 30px;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -44,7 +44,7 @@ export default class UIManager {
         <span class="record-item account-part">${UIManager.accountForDisplay(
           account
         )}</span>
-        <span class="record-item color-display" style="background-color: ${color}; padding: 5px; text-shadow: 1px 1px 1px white, -1px -1px 1px white, 1px -1px 1px white, -1px 1px 1px white;">${color}</span>
+        <span class="record-item color-display font-shadow" style="background-color: ${color}; padding: 5px;">${color}</span>
         <div class="record-item record-actions">
           <button class="edit">Edit</button>
           <button class="delete">Delete</button>
